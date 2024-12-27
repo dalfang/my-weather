@@ -23,3 +23,7 @@ export const getCurrentWeather = async (
     throw error;
   }
 };
+
+export const displayLocation = (locationDetails: Location) => {
+  return locationDetails;
+};

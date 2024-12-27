@@ -1,18 +1,28 @@
 import React, { useState } from "react";
-import { getLocation } from "./utils/api";
+import { getLocation, getCurrentWeather } from "./utils/api";
 import LocationDisplay from "./components/LocationDisplay";
-import { LocationResponse, Location } from "./types/types";
+import WeatherDisplay from "./components/WeatherDisplay";
+import { LocationResponse, Location, WeatherResponse } from "./types/types";
 import WeatherForm from "./components/WeatherFrom";
 
 const App: React.FC = () => {
-  const [weatherData, setWeatherData] = useState<LocationResponse | null>(null);
+  const [locationDetails, setLocationData] = useState<LocationResponse | null>(
+    null
+  );
+  const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
 
   const handleSearch = async (location: string) => {
     try {
-      const data = await getLocation(location);
-      setWeatherData(data);
+      const locationResponse = await getLocation(location);
+      setLocationData(locationResponse);
+
+      if (locationResponse.results && locationResponse.results.length > 0) {
+        const firstLocation: Location = locationResponse.results[0];
+        const weatherResponse = await getCurrentWeather(firstLocation);
+        setWeatherData(weatherResponse);
+      }
     } catch (error) {
-      console.error("Error fetching weather data:", error);
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -20,9 +30,12 @@ const App: React.FC = () => {
     <div className="App">
       <h1>hopefully, it won't rain today..</h1>
       <WeatherForm onSubmit={handleSearch} />
-      {weatherData && weatherData.results && weatherData.results.length > 0 && (
-        <LocationDisplay locationDetails={weatherData.results[0]} />
-      )}
+      {locationDetails &&
+        locationDetails.results &&
+        locationDetails.results.length > 0 && (
+          <LocationDisplay locationDetails={locationDetails.results[0]} />
+        )}
+      {weatherData && <WeatherDisplay weatherData={weatherData} />}
     </div>
   );
 };
