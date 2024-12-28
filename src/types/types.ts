@@ -1,5 +1,3 @@
-// src/types/types.ts
-
 export type Location = {
   id: number;
   name: string;
@@ -23,12 +21,24 @@ export type Location = {
   admin4_id?: number;
 };
 
-export type LocationResponse = {
-  results?: Location[];
-  generationtime_ms: number;
-};
-
+export interface LocationResponse {
+  results: Location[];
+}
 export type WeatherResponse = {
+  current_weather: {
+    temperature: number;
+    windspeed: number;
+    winddirection: number;
+    weather: [
+      {
+        description: string;
+        icon: string;
+      }
+    ];
+  };
+  hourly: {
+    temperature_2m: number[];
+  };
   latitude: number;
   longitude: number;
   generationtime_ms: number;
@@ -45,13 +55,12 @@ export type WeatherResponse = {
     is_day: string;
     weathercode: string;
   };
-  current_weather: {
-    time: string;
-    interval: number;
-    temperature: number;
-    windspeed: number;
-    winddirection: number;
-    is_day: number;
-    weathercode: number;
-  };
 };
+
+export interface ForecastResponse {
+  time: string[];
+  temperature_2m_max: number[];
+  temperature_2m_min: number[];
+  precipitation_sum: number[];
+  windspeed_10m_max: number[];
+}
