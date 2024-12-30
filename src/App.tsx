@@ -29,6 +29,7 @@ const App: React.FC = () => {
   ) => {
     try {
       const weatherResponse = await getCurrentWeather(location);
+      console.log("here", weatherResponse);
       setWeatherData(weatherResponse);
 
       const forecastResponse = await getFiveDayForecast(location);

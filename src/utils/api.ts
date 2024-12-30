@@ -12,7 +12,7 @@ import {
 export const getLocation = async (
   location: string
 ): Promise<LocationResponse> => {
-  const url = `https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=1`;
+  const url = `https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=3`;
   const response = await axios.get(url);
   return response.data;
 };
@@ -27,7 +27,7 @@ export const getCurrentWeather = async (
   try {
     const response = await axios.get(url);
 
-    //console.log("Current weather data:", response.data);
+    console.log("Current weather data:", response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -44,7 +44,17 @@ export const getFiveDayForecast = async (
 
   try {
     const response = await axios.get(url);
-    return response.data.daily;
+    const dailyData = response.data.daily;
+
+    const forecastWithoutToday = {
+      time: dailyData.time.slice(1),
+      temperature_2m_max: dailyData.temperature_2m_max.slice(1),
+      temperature_2m_min: dailyData.temperature_2m_min.slice(1),
+      precipitation_sum: dailyData.precipitation_sum.slice(1),
+      windspeed_10m_max: dailyData.windspeed_10m_max.slice(1),
+    };
+
+    return forecastWithoutToday;
   } catch (error) {
     console.error(error);
     throw error;
