@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   getLocation,
   getCurrentWeather,
@@ -7,13 +7,13 @@ import {
 import LocationDisplay from "./components/LocationDisplay";
 import WeatherDisplay from "./components/WeatherDisplay";
 import WeatherForecast from "./components/WeatherForecast";
+import WeatherForm from "./components/WeatherFrom"; // i typo this..
 import {
   LocationResponse,
   Location,
   WeatherResponse,
   ForecastResponse,
 } from "./types/types";
-import WeatherForm from "./components/WeatherFrom";
 
 const App: React.FC = () => {
   const [locationDetails, setLocationData] = useState<LocationResponse | null>(
@@ -22,32 +22,47 @@ const App: React.FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
   const [forecastData, setForecastData] = useState<ForecastResponse | null>(
     null
-  ); // State for 5-day forecast
+  );
+
+  const fetchWeatherData = async (
+    location: Location | { latitude: number; longitude: number }
+  ) => {
+    try {
+      const weatherResponse = await getCurrentWeather(location);
+      setWeatherData(weatherResponse);
+
+      const forecastResponse = await getFiveDayForecast(location);
+      setForecastData(forecastResponse);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const handleSearch = async (location: string) => {
     try {
-      // Fetch location data
       const locationResponse = await getLocation(location);
       setLocationData(locationResponse);
 
       if (locationResponse.results && locationResponse.results.length > 0) {
         const firstLocation: Location = locationResponse.results[0];
-
-        // Fetch current weather data
-        const weatherResponse = await getCurrentWeather(firstLocation);
-
-        setWeatherData(weatherResponse);
-
-        // Fetch 5-day forecast data
-        const forecastResponse = await getFiveDayForecast(firstLocation);
-        console.log("here", forecastResponse);
-
-        setForecastData(forecastResponse);
+        fetchWeatherData(firstLocation);
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching location:", error);
     }
   };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        fetchWeatherData({ latitude, longitude });
+      },
+      (error) => {
+        console.error("Error getting location:", error);
+      }
+    );
+  }, []);
 
   return (
     <div className="App">
@@ -59,10 +74,9 @@ const App: React.FC = () => {
           <LocationDisplay locationDetails={locationDetails.results[0]} />
         )}
       {weatherData && <WeatherDisplay weatherData={weatherData} />}
-      {forecastData && locationDetails && (
-        <WeatherForecast forecastData={forecastData} />
-      )}
+      {forecastData && <WeatherForecast forecastData={forecastData} />}
     </div>
   );
 };
+
 export default App;

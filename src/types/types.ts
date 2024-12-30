@@ -1,16 +1,16 @@
 export type Location = {
-  id: number;
-  name: string;
+  id?: number;
+  name?: string;
   latitude: number;
   longitude: number;
   elevation: number;
-  feature_code: string;
-  country_code: string;
+  feature_code?: string;
+  country_code?: string;
   timezone: string;
   population: number;
   postcodes: string[];
-  country_id: number;
-  country: string;
+  country_id?: number;
+  country?: string;
   admin1?: string;
   admin2?: string;
   admin3?: string;
@@ -64,3 +64,8 @@ export interface ForecastResponse {
   precipitation_sum: number[];
   windspeed_10m_max: number[];
 }
+
+export type PartialLocation = {
+  latitude: number;
+  longitude: number;
+};
