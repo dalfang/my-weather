@@ -14,6 +14,7 @@ import {
   WeatherResponse,
   ForecastResponse,
 } from "./types/types";
+import "./index.css";
 
 const App: React.FC = () => {
   const [locationDetails, setLocationData] = useState<LocationResponse | null>(
