@@ -106,8 +106,8 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData }) => {
 
   return (
     <div>
-      <h2>Current Weather</h2>
-      <img src={icon} alt="Weather Icon" width={50} height={50} />
+      <h3>Current Weather</h3>
+      <img src={icon} alt="Weather Icon" width={150} height={150} />
       <p id="temperature">Temperature: {current_weather.temperature} °C</p>
       <p id="windspeed">Wind Speed: {current_weather.windspeed} km/h</p>
       <p id="winddirection">

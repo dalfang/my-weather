@@ -11,17 +11,27 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ forecastData }) => {
   }
 
   return (
-    <div>
+    <div className="forecast-container">
       <h2>5-Day Weather Forecast</h2>
-      {forecastData.time.map((date, index) => (
-        <div key={index}>
-          <h3>{date}</h3>
-          <p>Max Temp: {forecastData.temperature_2m_max[index]} °C</p>
-          <p>Min Temp: {forecastData.temperature_2m_min[index]} °C</p>
-          <p>Precipitation: {forecastData.precipitation_sum[index]} mm</p>
-          <p>Wind Speed: {forecastData.windspeed_10m_max[index]} km/h</p>
-        </div>
-      ))}
+      <div className="weather-cards-container">
+        {forecastData.time.map((date, index) => (
+          <div className="weather-card" key={index}>
+            <h3 className="card-date">{date}</h3>
+            <p className="card-info">
+              Max Temp: {forecastData.temperature_2m_max[index]} °C
+            </p>
+            <p className="card-info">
+              Min Temp: {forecastData.temperature_2m_min[index]} °C
+            </p>
+            <p className="card-info">
+              Precipitation: {forecastData.precipitation_sum[index]} mm
+            </p>
+            <p className="card-info">
+              Wind Speed: {forecastData.windspeed_10m_max[index]} km/h
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

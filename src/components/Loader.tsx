@@ -1,7 +1,8 @@
+import * as React from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+
 const Loader: React.FC = () => (
-  <div className="loader-container">
-    <div className="loader"></div>
-  </div>
+  <CircularProgress style={{ color: "#8AB4F9" }} size={70} />
 );
 
 export default Loader;

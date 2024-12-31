@@ -50,6 +50,7 @@ const WeatherForm: React.FC<WeatherFormProps> = ({ onSubmit }) => {
 
   return (
     <form
+      className="search-bar"
       onSubmit={handleSubmit}
       style={{ position: "relative", width: "100%" }}
     >

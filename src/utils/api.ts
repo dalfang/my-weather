@@ -14,6 +14,7 @@ export const getLocation = async (
 ): Promise<LocationResponse> => {
   const url = `https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=3`;
   const response = await axios.get(url);
+  console.log("Location response:", response.data);
   return response.data;
 };
 
@@ -64,4 +65,28 @@ export const getFiveDayForecast = async (
 // Function to display location details
 export const displayLocation = (locationDetails: PartialLocation) => {
   return locationDetails;
+};
+
+export const getLocationFromCoordinates = async (
+  latitude: number,
+  longitude: number
+) => {
+  try {
+    const response = await axios.get(
+      `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+    );
+
+    const locationData = response.data;
+    const city =
+      locationData.address.city ||
+      locationData.address.town ||
+      locationData.address.village ||
+      "Unknown City";
+    const country = locationData.address.country || "Unknown Country";
+
+    return { city, country };
+  } catch (error) {
+    console.error("Error fetching location from coordinates:", error);
+    return { city: "Unknown City", country: "Unknown Country" };
+  }
 };

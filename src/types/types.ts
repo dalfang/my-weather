@@ -35,6 +35,10 @@ export type WeatherResponse = {
         icon: string;
       }
     ];
+    location?: {
+      city: string;
+      country: string;
+    };
   };
   hourly: {
     temperature_2m: number[];

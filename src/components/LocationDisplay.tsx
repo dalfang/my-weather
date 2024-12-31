@@ -1,10 +1,7 @@
-// src/components/LocationDisplay.tsx
-
 import React from "react";
-import { Location } from "../types/types";
 
 interface LocationDisplayProps {
-  locationDetails: Location;
+  locationDetails: { city: string; country: string };
 }
 
 const LocationDisplay: React.FC<LocationDisplayProps> = ({
@@ -12,8 +9,9 @@ const LocationDisplay: React.FC<LocationDisplayProps> = ({
 }) => {
   return (
     <div id="location-container">
-      <h2 id="location-name">{locationDetails.name}</h2>
-      <h3 id="country">{locationDetails.country}</h3>
+      <h3 id="location-name">
+        {locationDetails.city}, {locationDetails.country}
+      </h3>
     </div>
   );
 };
