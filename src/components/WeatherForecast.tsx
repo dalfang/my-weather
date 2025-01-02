@@ -7,28 +7,41 @@ interface WeatherForecastProps {
 
 const WeatherForecast: React.FC<WeatherForecastProps> = ({ forecastData }) => {
   if (!forecastData || !forecastData.time || forecastData.time.length === 0) {
-    return <p>Loading 5-Day forecast...</p>;
+    return <p>Loading the next few days...</p>;
   }
 
   return (
     <div className="forecast-container">
-      <h2>5-Day Weather Forecast</h2>
+      <h2>Upcoming Weather</h2>
       <div className="weather-cards-container">
         {forecastData.time.map((date, index) => (
           <div className="weather-card" key={index}>
             <h3 className="card-date">{date}</h3>
             <p className="card-info">
-              Max Temp: {forecastData.temperature_2m_max[index]} °C
+              High: {forecastData.temperature_2m_max[index]}°C
             </p>
             <p className="card-info">
-              Min Temp: {forecastData.temperature_2m_min[index]} °C
+              Low: {forecastData.temperature_2m_min[index]}°C
             </p>
             <p className="card-info">
               Precipitation: {forecastData.precipitation_sum[index]} mm
             </p>
             <p className="card-info">
-              Wind Speed: {forecastData.windspeed_10m_max[index]} km/h
+              Wind: {forecastData.windspeed_10m_max[index]} km/h
             </p>
+            {forecastData.uv_index_max && (
+              <p className="card-info">
+                UV Index: {forecastData.uv_index_max[index]}
+              </p>
+            )}
+            {forecastData.sunrise && (
+              <p className="card-info">
+                Sunrise: {forecastData.sunrise[index]}
+              </p>
+            )}
+            {forecastData.sunset && (
+              <p className="card-info">Sunset: {forecastData.sunset[index]}</p>
+            )}
           </div>
         ))}
       </div>

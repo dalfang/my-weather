@@ -10,6 +10,7 @@ import rainIcon from "../assets/icons/rain.svg";
 import snowIcon from "../assets/icons/snow.svg";
 import thunderstormsRainIcon from "../assets/icons/thunderstorms-rain.svg";
 import windIcon from "../assets/icons/wind.svg";
+import drizzle from "../assets/icons/drizzle.svg";
 import { WeatherResponse } from "../types/types";
 
 interface WeatherDisplayProps {
@@ -59,9 +60,9 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData }) => {
       icon = rainIcon;
       break;
     case 57: // Freezing drizzle
-      icon = rainIcon;
+    case 61: // drizzle
+      icon = drizzle;
       break;
-    case 61: // Light snow
     case 63: // Moderate snow
     case 65: // Heavy snow
       icon = snowIcon;

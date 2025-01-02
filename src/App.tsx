@@ -17,7 +17,7 @@ import {
   ForecastResponse,
   PartialLocation,
 } from "./types/types";
-import "./index.css";
+import "./App.css";
 
 const App: React.FC = () => {
   const [locationDetails, setLocationData] = useState<LocationResponse | null>(
@@ -95,7 +95,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <h1>Hopefully, it won't rain today..</h1>
+      <h1>hopefully, it won't rain today..</h1>
       <WeatherForm onSubmit={handleSearch} />
       {isLoading && <Loader />}
 

@@ -41,7 +41,7 @@ export const getFiveDayForecast = async (
   locationDetails: PartialLocation
 ): Promise<ForecastResponse> => {
   const { latitude, longitude } = locationDetails;
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&timezone=auto`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max,uv_index_max,sunrise,sunset&timezone=auto`;
 
   try {
     const response = await axios.get(url);
@@ -53,6 +53,9 @@ export const getFiveDayForecast = async (
       temperature_2m_min: dailyData.temperature_2m_min.slice(1),
       precipitation_sum: dailyData.precipitation_sum.slice(1),
       windspeed_10m_max: dailyData.windspeed_10m_max.slice(1),
+      uv_index_max: dailyData.uv_index_max.slice(1),
+      sunrise: dailyData.sunrise.slice(1),
+      sunset: dailyData.sunset.slice(1),
     };
 
     return forecastWithoutToday;

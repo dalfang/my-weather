@@ -67,6 +67,9 @@ export interface ForecastResponse {
   temperature_2m_min: number[];
   precipitation_sum: number[];
   windspeed_10m_max: number[];
+  uv_index_max?: number[];
+  sunrise?: string[];
+  sunset?: string[];
 }
 
 export type PartialLocation = {
