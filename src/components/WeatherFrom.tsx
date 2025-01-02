@@ -66,7 +66,19 @@ const WeatherForm: React.FC<WeatherFormProps> = ({ onSubmit }) => {
           border: "1px solid #ccc",
         }}
       />
-      <button type="submit" style={{ padding: "8px 16px", marginTop: "8px" }}>
+      <button
+        type="submit"
+        style={{
+          padding: "8px 16px",
+          marginTop: "8px",
+          textDecoration: "none",
+          color: "#fff",
+          backgroundColor: "#007bff",
+          borderRadius: "4px",
+          display: "inline-block",
+        }}
+        className="link-slide-up"
+      >
         Get Weather
       </button>
       {suggestions.length > 0 && (
@@ -74,19 +86,14 @@ const WeatherForm: React.FC<WeatherFormProps> = ({ onSubmit }) => {
           style={{
             position: "absolute",
             top: "40px",
-            // Adjust based on input height
             left: "50%",
-            // Position at 50% width of the container
             transform: "translateX(-50%)",
-            // Center it by offsetting to the left by half of its own width
             backgroundColor: "white",
             border: "1px solid #ccc",
             borderRadius: "4px",
             zIndex: 1,
             maxHeight: "200px",
-            // Limit dropdown height
             overflowY: "auto",
-            // Scrollable if there are too many suggestions
           }}
         >
           {suggestions.map((suggestion, index) => (

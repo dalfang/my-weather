@@ -1,13 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ysabeau+SC:wght@1..1000&display=swap");
+
 * {
-  font-family: "Source Code Pro", serif;
 }
 
 body {
   font-family: "Arial", sans-serif;
-  background-color: #f6f6f6;
-  color: #333;
   margin: 0;
   padding: 0;
 }
@@ -15,6 +14,7 @@ body {
 .App {
   text-align: center;
   padding: 20px;
+  background-color: #a0b8d4;
 }
 
 .search-bar {
@@ -40,6 +40,16 @@ body {
   cursor: pointer;
 }
 
+/* Button Hover Animation */
+.link-slide-up {
+  transition: transform 2.3s ease, opacity 3s ease;
+}
+
+.link-slide-up:hover {
+  transform: translateY(-5px);
+  opacity: 0.8;
+}
+
 /* Forecast Display */
 .forecast-container {
   text-align: center;
@@ -58,12 +68,11 @@ body {
 
 /* Individual weather card */
 .weather-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: #1d2729;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 15px;
-  width: 180px;
+  width: 200px;
   text-align: left;
 }
 
@@ -71,18 +80,57 @@ body {
 .card-date {
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: #333333;
   margin-bottom: 10px;
+  color: aliceblue;
 }
 
 .card-info {
   font-size: 14px;
-  color: #555;
   margin: 5px 0;
+  color: aliceblue;
 }
 
 .footer {
   margin-top: 20px;
   font-size: 0.8rem;
-  color: #999;
+}
+
+/* Weather Display Component */
+.weather-display {
+  background-color: #f1f8ff;
+  border: 1px solid #dce6f0;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Source Code Pro", monospace;
+}
+
+.weather-display h3 {
+  font-size: 1.8rem;
+  color: #00509e;
+  margin-bottom: 15px;
+}
+
+.weather-display img {
+  margin: 15px 0;
+}
+
+.weather-display p {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.weather-display p#temperature {
+  font-weight: bold;
+}
+
+.weather-display p#windspeed {
+}
+
+.weather-display p#winddirection {
 }
