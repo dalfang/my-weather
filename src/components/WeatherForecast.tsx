@@ -40,7 +40,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ forecastData }) => {
     <div className="forecast-container">
       <h2>Upcoming Weather</h2>
       <div className="weather-cards-container">
-        {forecastData.time.map((date, index) => (
+        {forecastData.time.slice(0, 4).map((date, index) => (
           <div className="weather-card" key={index}>
             <h3 className="card-date">{formatDate(date)}</h3>
             <p className="card-info">
@@ -78,5 +78,4 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ forecastData }) => {
     </div>
   );
 };
-
 export default WeatherForecast;

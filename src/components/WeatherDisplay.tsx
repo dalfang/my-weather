@@ -105,9 +105,19 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData }) => {
       break;
   }
 
+  // Get today's date
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString(undefined, {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <div className="weather-display">
       <img src={icon} alt="Weather Icon" width={250} height={250} />
+      <h3> {formattedDate}</h3>
       <p id="temperature">Temperature: {current_weather.temperature} °C</p>
       <p id="windspeed">Wind Speed: {current_weather.windspeed} km/h</p>
       <p id="winddirection">

@@ -9,20 +9,18 @@ const WeatherForm: React.FC<WeatherFormProps> = ({ onSubmit }) => {
   const [location, setLocation] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
-  // Function to handle fetching location suggestions
   const fetchLocationSuggestions = async (query: string) => {
     try {
       const locationResponse = await getLocation(query);
       const newSuggestions = locationResponse.results
         .map((result) => `${result.name}, ${result.country}`)
-        .filter(Boolean); // Filters out undefined values
+        .filter(Boolean);
       setSuggestions(newSuggestions);
     } catch (error) {
       console.error("Error fetching location suggestions:", error);
     }
   };
 
-  // Handle input change and trigger fetching suggestions
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setLocation(value);
@@ -34,14 +32,12 @@ const WeatherForm: React.FC<WeatherFormProps> = ({ onSubmit }) => {
     }
   };
 
-  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(location);
     setSuggestions([]);
   };
 
-  // Handle click on a suggestion
   const handleSuggestionClick = (suggestion: string) => {
     setLocation(suggestion);
     setSuggestions([]);
@@ -49,61 +45,23 @@ const WeatherForm: React.FC<WeatherFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form
-      className="search-bar"
-      onSubmit={handleSubmit}
-      style={{ position: "relative", width: "100%" }}
-    >
+    <form className="search-bar" onSubmit={handleSubmit}>
       <input
         type="text"
         value={location}
         onChange={handleChange}
         placeholder="Enter your location..."
         required
-        style={{
-          padding: "8px",
-          borderRadius: "4px",
-          border: "1px solid #ccc",
-        }}
       />
-      <button
-        type="submit"
-        style={{
-          padding: "8px 16px",
-          marginTop: "8px",
-          textDecoration: "none",
-          color: "#fff",
-          backgroundColor: "#007bff",
-          borderRadius: "4px",
-          display: "inline-block",
-        }}
-        className="link-slide-up"
-      >
+      <span className="link-slide-up" onClick={() => onSubmit(location)}>
         Get Weather
-      </button>
+      </span>
       {suggestions.length > 0 && (
-        <div
-          style={{
-            position: "absolute",
-            top: "40px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            backgroundColor: "white",
-            border: "1px solid #ccc",
-            borderRadius: "4px",
-            zIndex: 1,
-            maxHeight: "200px",
-            overflowY: "auto",
-          }}
-        >
+        <div className="suggestions-container">
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
-              style={{
-                padding: "8px",
-                cursor: "pointer",
-                borderBottom: "1px solid #ccc",
-              }}
+              className="suggestion-item"
               onClick={() => handleSuggestionClick(suggestion)}
             >
               {suggestion}
