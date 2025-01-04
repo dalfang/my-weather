@@ -22,13 +22,17 @@ export type Location = {
 };
 
 export interface LocationResponse {
-  results: Location[];
+  city: string;
+  country: string;
+  results?: Location[];
 }
 export type WeatherResponse = {
   current_weather: {
     temperature: number;
     windspeed: number;
     winddirection: number;
+    weathercode: number;
+    is_day: boolean;
     weather: [
       {
         description: string;

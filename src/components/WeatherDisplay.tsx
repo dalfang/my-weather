@@ -114,8 +114,16 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData }) => {
     day: "numeric",
   });
 
+  const hours = today.getHours();
+  const isNight = hours >= 19 || hours < 5;
+
+  // Determine CSS class based on time of day
+  const containerClass = isNight
+    ? "weather-display night"
+    : "weather-display day";
+
   return (
-    <div className="weather-display">
+    <div className={containerClass}>
       <img src={icon} alt="Weather Icon" width={250} height={250} />
       <h3> {formattedDate}</h3>
       <p id="temperature">Temperature: {current_weather.temperature} °C</p>

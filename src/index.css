@@ -11,7 +11,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000000;
-  background: linear-gradient(150deg, #640d5f, #b35a0c, white);
+  background: linear-gradient(150deg, #640d5f, #f7d9be, white);
   background-size: 400% 400%;
   color: #ffffff;
   animation: gradientShift 10s ease infinite;
@@ -84,6 +84,16 @@ body {
   border-radius: 160px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   animation: fadeIn 1.5s ease-in-out;
+}
+
+.weather-display.day {
+  background-color: rgba(248, 249, 250, 0.8);
+  color: #000000;
+}
+
+.weather-display.night {
+  background-color: rgba(0, 103, 140, 0.8);
+  color: #ffffff;
 }
 
 .weather-display img {
@@ -182,7 +192,7 @@ body {
 
 /* Individual weather card */
 .weather-card {
-  background-color: #cf8259;
+  background-color: #0d2131;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   padding: 20px;
