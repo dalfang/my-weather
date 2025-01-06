@@ -12,12 +12,15 @@ const WeatherForm: React.FC<WeatherFormProps> = ({ onSubmit }) => {
   const fetchLocationSuggestions = async (query: string) => {
     try {
       const locationResponse = await getLocation(query);
-      const newSuggestions = locationResponse.results
-        .map((result) => `${result.name}, ${result.country}`)
-        .filter(Boolean);
+      const newSuggestions = locationResponse.results?.length
+        ? locationResponse.results
+            .map((result) => `${result.name}, ${result.country}`)
+            .filter(Boolean)
+        : [];
       setSuggestions(newSuggestions);
     } catch (error) {
       console.error("Error fetching location suggestions:", error);
+      setSuggestions([]);
     }
   };
 

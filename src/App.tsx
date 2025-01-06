@@ -10,6 +10,7 @@ import WeatherDisplay from "./components/WeatherDisplay";
 import WeatherForecast from "./components/WeatherForecast";
 import WeatherForm from "./components/WeatherFrom"; // i typo this
 import Loader from "./components/Loader";
+
 import {
   LocationResponse,
   Location,
