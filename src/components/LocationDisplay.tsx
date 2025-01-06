@@ -9,9 +9,9 @@ const LocationDisplay: React.FC<LocationDisplayProps> = ({
 }) => {
   return (
     <div id="location-container">
-      <h3 id="location-name">
+      <h2 id="location-name">
         {locationDetails.city}, {locationDetails.country}
-      </h3>
+      </h2>
     </div>
   );
 };

@@ -67,8 +67,8 @@ body {
   animation-delay: 2s;
 }
 
-.location-container h3 {
-  font-size: 24px;
+.location-name {
+  font-size: 27px;
   color: #ffd700;
   animation: fadeIn 1.5s ease-in-out;
 }
@@ -87,7 +87,7 @@ body {
 }
 
 .weather-display.day {
-  background-color: rgba(248, 249, 250, 0.8);
+  background-color: rgba(188, 206, 224, 0.8);
   color: #000000;
 }
 
@@ -102,8 +102,8 @@ body {
 
 .weather-display h3 {
   margin: 15px 0;
-  font-size: 24px;
-  color: #ffd700;
+  font-size: 20px;
+  color: #7f6d0a;
   animation: fadeIn 1.5s ease-in-out;
 }
 
