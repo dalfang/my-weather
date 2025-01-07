@@ -33,6 +33,10 @@ export type WeatherResponse = {
     winddirection: number;
     weathercode: number;
     is_day: boolean;
+    daily: {
+      time: string[];
+      temperature_2m_max: number[];
+      temperature_2m_min: number[];
     weather: [
       {
         description: string;

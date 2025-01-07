@@ -23,7 +23,7 @@ export const getCurrentWeather = async (
   locationDetails: PartialLocation
 ): Promise<WeatherResponse> => {
   const { latitude, longitude } = locationDetails;
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&models=icon_global`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min&current_weather=true`;
 
   try {
     const response = await axios.get(url);

@@ -22,8 +22,8 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData }) => {
     return null;
   }
 
-  const { current_weather } = weatherData;
-  const { weathercode, is_day } = current_weather;
+  const { current_weather, daily } = weatherData;
+  const { temperature, weathercode, is_day } = current_weather;
 
   // Convert weathercode to integer if it's a string
   const code =
@@ -122,11 +122,19 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData }) => {
     ? "weather-display night"
     : "weather-display day";
 
+  // Today's high and low temperatures
+  const todayHigh = daily.temperature_2m_max[0];
+  const todayLow = daily.temperature_2m_min[0];
+
   return (
     <div className={containerClass}>
+      <h2>Today's Weather</h2>
+
       <img src={icon} alt="Weather Icon" width={250} height={250} />
       <h3> {formattedDate}</h3>
       <p id="temperature">Temperature: {current_weather.temperature} °C</p>
+      <p>High: {todayHigh} °C</p>
+      <p>Low: {todayLow} °C</p>
       <p id="windspeed">Wind Speed: {current_weather.windspeed} km/h</p>
       <p id="winddirection">
         Wind Direction: {current_weather.winddirection} °
