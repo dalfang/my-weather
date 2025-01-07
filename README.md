@@ -36,6 +36,5 @@ A simple application for real-time and forecasted weather updates worldwide, bui
 - Add more metrics (e.g., humidity, UV index).
 - Improve UI with charts and interactive features.
 
-## License
-MIT License. See LICENSE file.
+
 
