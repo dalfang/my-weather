@@ -1,18 +1,18 @@
-# Weather App
+# 🌦️ Weather App
 
 A simple application for real-time and forecasted weather updates worldwide, built with TypeScript.
 
-## Features
+## ✨ Features
 - **Real-Time Weather**: Current temperature, wind, and conditions.
 - **Hourly/Daily Forecast**: Hourly temperatures and weekly high/low forecasts.
 - **Location Search**: Search by city or coordinates.
 
-## Tech Stack
+## 🛠️ Tech Stack
 - TypeScript
 - [Open-Meteo Weather API](https://open-meteo.com/)
 - React/Vite
 
-## Installation
+## 🚀 Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/weather-app.git
@@ -28,13 +28,12 @@ A simple application for real-time and forecasted weather updates worldwide, bui
    ```
 4. Open in browser: `http://localhost:3000`
 
-## Usage
+## 🌍 Usage
 1. Enter a city or coordinates.
 2. View real-time weather and forecasts.
 
-## Future Plans
+## 🗓️ Future Plans
 - Add more metrics (e.g., humidity, UV index).
 - Improve UI with charts and interactive features.
-
 
 
