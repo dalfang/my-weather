@@ -23,89 +23,66 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData }) => {
   }
 
   const { current_weather, daily } = weatherData;
-  const { temperature, weathercode, is_day } = current_weather;
+  const { temperature, weathercode, is_day, windspeed, winddirection } =
+    current_weather;
 
-  // Convert weathercode to integer if it's a string
   const code =
     typeof weathercode === "string" ? parseInt(weathercode) : weathercode;
 
   let icon;
 
-  // Map the weathercode to an icon based on is_day (day or night)
   switch (code) {
-    case 0: // Clear sky
+    case 0:
       icon = is_day ? clearDayIcon : clearNightIcon;
       break;
-    case 1: // Mainly clear
+    case 1:
+    case 2:
       icon = is_day ? partlyCloudyDayIcon : partlyCloudyNightIcon;
       break;
-    case 2: // Partly cloudy
-      icon = is_day ? partlyCloudyDayIcon : partlyCloudyNightIcon;
-      break;
-    case 3: // Cloudy
+    case 3:
       icon = cloudyIcon;
       break;
-    case 45: // Fog
+    case 45:
+    case 48:
       icon = fogIcon;
       break;
-    case 48: // Depositing rime fog
-      icon = fogIcon;
-      break;
-    case 51: // Light rain
-    case 53: // Moderate rain
-    case 55: // Heavy rain
+    case 51:
+    case 53:
+    case 55:
+    case 56:
       icon = rainIcon;
       break;
-    case 56: // Freezing rain
-      icon = rainIcon;
-      break;
-    case 57: // Freezing drizzle
-    case 61: // drizzle
+    case 57:
+    case 61:
       icon = drizzle;
       break;
-    case 63: // Moderate snow
-    case 65: // Heavy snow
+    case 63:
+    case 65:
       icon = snowIcon;
       break;
-    case 71: // Light thunderstorm
-    case 73: // Moderate thunderstorm
-    case 75: // Heavy thunderstorm
+    case 71:
+    case 73:
+    case 75:
+    case 77:
+    case 95:
+    case 96:
+    case 99:
       icon = thunderstormsRainIcon;
       break;
-    case 77: // Thunderstorms with hail
-      icon = thunderstormsRainIcon;
+    case 200:
+    case 201:
+    case 202:
+      icon = windIcon;
       break;
-    case 80: // Light rain showers
-    case 81: // Moderate rain showers
-    case 82: // Heavy rain showers
-      icon = rainIcon;
-      break;
-    case 85: // Light snow showers
-    case 86: // Heavy snow showers
-      icon = snowIcon;
-      break;
-    case 95: // Thunderstorms
-      icon = thunderstormsRainIcon;
-      break;
-    case 96: // Thunderstorms with hail
-    case 99: // Thunderstorms with hail
-      icon = thunderstormsRainIcon;
-      break;
-    case 200: // Windy (hurricane-like)
-    case 201: // Strong wind
-    case 202: // Very strong wind
-      icon = windIcon; // Use windIcon for windy weather
-      break;
-    case 203: // Hurricane
-    case 204: // Severe hurricane
-      icon = hurricaneIcon; // Use hurricaneIcon for hurricane conditions
+    case 203:
+    case 204:
+      icon = hurricaneIcon;
       break;
     default:
-      icon = clearDayIcon; // Default to clear day if no match
+      icon = clearDayIcon;
       break;
   }
 
-  // Get today's date
   const today = new Date();
   const formattedDate = today.toLocaleDateString(undefined, {
     weekday: "long",
@@ -117,28 +94,23 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData }) => {
   const hours = today.getHours();
   const isNight = hours >= 19 || hours < 5;
 
-  // Determine CSS class based on time of day
   const containerClass = isNight
     ? "weather-display night"
     : "weather-display day";
 
-  // Today's high and low temperatures
-  const todayHigh = daily.temperature_2m_max[0];
-  const todayLow = daily.temperature_2m_min[0];
+  const todayHigh = daily?.temperature_2m_max?.[0] ?? "N/A";
+  const todayLow = daily?.temperature_2m_min?.[0] ?? "N/A";
 
   return (
     <div className={containerClass}>
       <h2>Today's Weather</h2>
-
       <img src={icon} alt="Weather Icon" width={250} height={250} />
-      <h3> {formattedDate}</h3>
-      <p id="temperature">Temperature: {current_weather.temperature} °C</p>
+      <h3>{formattedDate}</h3>
+      <p id="temperature">Temperature: {temperature} °C</p>
       <p>High: {todayHigh} °C</p>
       <p>Low: {todayLow} °C</p>
-      <p id="windspeed">Wind Speed: {current_weather.windspeed} km/h</p>
-      <p id="winddirection">
-        Wind Direction: {current_weather.winddirection} °
-      </p>
+      <p id="windspeed">Wind Speed: {windspeed} km/h</p>
+      <p id="winddirection">Wind Direction: {winddirection}°</p>
     </div>
   );
 };

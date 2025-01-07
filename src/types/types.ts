@@ -33,10 +33,6 @@ export type WeatherResponse = {
     winddirection: number;
     weathercode: number;
     is_day: boolean;
-    daily: {
-      time: string[];
-      temperature_2m_max: number[];
-      temperature_2m_min: number[];
     weather: [
       {
         description: string;
@@ -50,6 +46,16 @@ export type WeatherResponse = {
   };
   hourly: {
     temperature_2m: number[];
+  };
+  daily?: {
+    time: string[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+    precipitation_sum?: number[];
+    windspeed_10m_max?: number[];
+    uv_index_max?: number[];
+    sunrise?: string[];
+    sunset?: string[];
   };
   latitude: number;
   longitude: number;
