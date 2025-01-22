@@ -36,8 +36,8 @@ body {
 
 /* Apply fadeInUp to h1 */
 .App h1 {
-  font-size: 36px;
-  color: #b5d5d1;
+  font-size: 50px;
+  color: #173733;
   animation: fadeInUp 1s ease-out;
 }
 
@@ -48,7 +48,6 @@ body {
   animation: fadeInUp 1.5s ease-out;
 }
 
-/* You can add different delays to make each component appear sequentially */
 .location-container {
   animation-delay: 0.5s;
 }
@@ -61,15 +60,14 @@ body {
   animation-delay: 1.5s;
 }
 
-/* Optional: Make the Loader fade in as well */
 .loader {
   animation: fadeInUp 1s ease-out;
   animation-delay: 2s;
 }
 
 .location-name {
-  font-size: 27px;
-  color: #ffd700;
+  font-size: 35px;
+  color: #131310;
   animation: fadeIn 1.5s ease-in-out;
 }
 
@@ -103,7 +101,7 @@ body {
 .weather-display h3 {
   margin: 15px 0;
   font-size: 20px;
-  color: #7f6d0a;
+  color: #000000;
   animation: fadeIn 1.5s ease-in-out;
 }
 
